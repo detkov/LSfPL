@@ -5,11 +5,11 @@ Bachelor Thesis: Influence of the label smoothing for pseudo labeled data for tr
 
 # TODO
 
-- [ ] EDA
+- [x] EDA
 - [ ] Implement first solution:
-  - [ ] Resize Dataset
-  - [ ] Create folds split
-  - [ ] Create Dataset module
+  - [x] Resize Dataset
+  - [x] Create folds split
+  - [x] Create Dataset module 
   - [ ] Create Loss function 
   - [ ] Create Model
   - [ ] Train, predict and make first submit
