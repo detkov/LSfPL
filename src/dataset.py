@@ -9,6 +9,47 @@ from albumentations.pytorch import ToTensorV2
 
 DIR_INPUT = '../input'
 
+transforms_train = A.Compose([
+    # Rigid aug
+    A.OneOf([
+        A.ShiftScaleRotate(rotate_limit=1.0, p=1.0),
+        A.HorizontalFlip(p=1.0),
+        A.VerticalFlip(p=1.0),
+    ], p=0.5),
+
+
+    # Pixels aug
+    A.OneOf([
+        A.HueSaturationValue(p=0.3),
+        A.RandomBrightnessContrast(p=0.3),
+        A.RandomGamma(p=0.3)
+    ], p=0.3),
+    
+    A.OneOf([
+        A.IAAEmboss(p=1.0),
+        A.IAASharpen(p=1.0),
+        A.Blur(blur_limit=5, p=1.0),
+        A.CLAHE(p=1.0)
+    ], p=0.3),
+
+
+    # Non-rigid aug
+    A.OneOf([
+        A.ElasticTransform(p=1.0),
+        A.IAAPiecewiseAffine(p=1.0),
+        A.GridDistortion(distort_limit=0.6, p=1.0),
+        A.OpticalDistortion(distort_limit=0.7, shift_limit=0.2, p=1.0)
+    ], p=0.5),
+
+    A.Normalize(p=1.0),
+    ToTensorV2(p=1.0),
+])
+
+transforms_valid = A.Compose([
+    A.Normalize(p=1.0),
+    ToTensorV2(p=1.0),
+])
+
 class PlantDataset(Dataset):
     def __init__(self, df, transforms=None):
         self.df = df
