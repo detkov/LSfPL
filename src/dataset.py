@@ -1,13 +1,13 @@
-import torch
-from torch.utils.data import Dataset, DataLoader
-import cv2
+from os.path import join
 import numpy as np
+
+import torch
+from torch.utils.data import Dataset
+import cv2
 
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
-
-DIR_INPUT = '../input'
 
 transforms_train = A.Compose([
     # Rigid aug
@@ -33,14 +33,6 @@ transforms_train = A.Compose([
     ], p=0.3),
 
 
-    # Non-rigid aug
-    A.OneOf([
-        A.ElasticTransform(p=1.0),
-        A.IAAPiecewiseAffine(p=1.0),
-        A.GridDistortion(distort_limit=0.6, p=1.0),
-        A.OpticalDistortion(distort_limit=0.7, shift_limit=0.2, p=1.0)
-    ], p=0.5),
-
     A.Normalize(p=1.0),
     ToTensorV2(p=1.0),
 ])
@@ -50,24 +42,24 @@ transforms_valid = A.Compose([
     ToTensorV2(p=1.0),
 ])
 
-class PlantDataset(Dataset):
-    def __init__(self, df, transforms=None):
+class MelanomaDataset(Dataset):
+    def __init__(self, df, input_dir, transforms=None):
         self.df = df
+        self.input_dir = input_dir
         self.transforms=transforms
-
+        
     def __len__(self):
         return self.df.shape[0]
     
     def __getitem__(self, idx):
-        image_src = DIR_INPUT + '/images_res/' + self.df.loc[idx, 'image_id'] + '.jpg'
+        image_src = join(self.input_dir, 'images_resized/', self.df.loc[idx, 'image_name'] + '.jpg')
         image = cv2.imread(image_src, cv2.IMREAD_COLOR)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        labels = self.df.loc[idx, ['healthy', 'multiple_diseases', 'rust', 'scab']].values
-        labels = torch.from_numpy(labels.astype(np.int8))
-        labels = labels.unsqueeze(-1)
+        label = self.df.loc[idx, 'target']
+        label = label.astype(np.int8).reshape(-1,)
         
         if self.transforms:
             transformed = self.transforms(image=image)
             image = transformed['image']
 
-        return image, labels
+        return image, label
