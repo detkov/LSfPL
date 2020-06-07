@@ -1,65 +1,59 @@
 from os.path import join
 import numpy as np
 
-import torch
 from torch.utils.data import Dataset
 import cv2
 
 import albumentations as A
-from albumentations.pytorch import ToTensorV2
+from albumentations.pytorch import ToTensor
 
 
-transforms_train = A.Compose([
+train_transforms = A.Compose([
     # Rigid aug
     A.OneOf([
-        A.ShiftScaleRotate(rotate_limit=1.0, p=1.0),
+        A.ShiftScaleRotate(rotate_limit=90, p=1.0),
         A.HorizontalFlip(p=1.0),
         A.VerticalFlip(p=1.0),
     ], p=0.5),
 
-
     # Pixels aug
     A.OneOf([
-        A.HueSaturationValue(p=0.3),
-        A.RandomBrightnessContrast(p=0.3),
-        A.RandomGamma(p=0.3)
-    ], p=0.3),
-    
-    A.OneOf([
-        A.IAAEmboss(p=1.0),
-        A.IAASharpen(p=1.0),
-        A.Blur(blur_limit=5, p=1.0),
-        A.CLAHE(p=1.0)
-    ], p=0.3),
+        A.RandomBrightnessContrast(p=1.0),
+        A.RandomGamma(p=1.0)
+    ], p=0.5),
 
 
-    A.Normalize(p=1.0),
-    ToTensorV2(p=1.0),
+
+    A.Normalize(mean=[0.485, 0.456, 0.406], 
+                std=[0.229, 0.224, 0.225]),
+    ToTensor()
 ])
 
-transforms_valid = A.Compose([
-    A.Normalize(p=1.0),
-    ToTensorV2(p=1.0),
+test_transforms = A.Compose([
+    A.Normalize(mean=[0.485, 0.456, 0.406], 
+                std=[0.229, 0.224, 0.225]),
+    ToTensor()
 ])
+
 
 class MelanomaDataset(Dataset):
-    def __init__(self, df, input_dir, transforms=None):
+    def __init__(self, df, input_dir, transforms):
         self.df = df
         self.input_dir = input_dir
-        self.transforms=transforms
-        
+        self.transforms = transforms
+    
     def __len__(self):
         return self.df.shape[0]
     
     def __getitem__(self, idx):
-        image_src = join(self.input_dir, 'images_resized/', self.df.loc[idx, 'image_name'] + '.jpg')
-        image = cv2.imread(image_src, cv2.IMREAD_COLOR)
+        image_src = join(self.input_dir, 'images_resized/', self.df.loc[idx, 'image_name'] + '.jpg')            
+        image = cv2.imread(image_src)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        
         label = self.df.loc[idx, 'target']
-        label = label.astype(np.int8).reshape(-1,)
         
         if self.transforms:
-            transformed = self.transforms(image=image)
-            image = transformed['image']
-
+            augmented = self.transforms(image=image)
+            image = augmented['image']
+        
         return image, label

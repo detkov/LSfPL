@@ -11,8 +11,9 @@ Bachelor Thesis: Influence of the label smoothing for pseudo labeled data for tr
   - [x] Create folds split
   - [x] Create Dataset module 
   - [x] Find relevant augmentations
-  - [ ] Create Loss function 
-  - [ ] Create Model
+  - [x] Create Loss function 
+  - [x] Create Model
+  - [x] Start Training
   - [ ] Train, predict and make first submit
 - [ ] Achieve best possible score:
   - [ ] Try different augmentations
