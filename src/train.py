@@ -170,7 +170,7 @@ def main():
                 es += 1
                 if es > 1:
                     break
-            print('Current Valid AUC:', auc, 'Best Valid AUC:', best_auc)
+            print('Current Valid AUC:', round(auc, 4), 'Best Valid AUC:', round(best_auc, 4))
             scheduler.step()
 
         cv.append(best_auc)
