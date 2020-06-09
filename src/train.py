@@ -64,7 +64,7 @@ def main(params):
     MODELS_DIR = config['MODELS_DIR']
     SUBMISSIONS_DIR = config['SUBMISSIONS_DIR']
     os.makedirs(join(MODELS_DIR, exp_name), exist_ok=True)
-    # os.mknod(join(MODELS_DIR, f'{exp_name}.txt'))
+    os.mknod(join(MODELS_DIR, exp_name, f'{exp_name}.txt'))
 
     BS = config['batch_size']
     LR = config['learning_rate']
