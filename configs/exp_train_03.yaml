@@ -16,4 +16,4 @@ experiment_name: exp_train_03
 use_test_labels: false
 seed: 42
 device: cuda:0
-folds_train_file: train_folds
+folds_train_file: train_folds_stratified

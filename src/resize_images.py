@@ -5,7 +5,6 @@ from PIL import Image
 from glob import glob
 from tqdm import tqdm
 from multiprocessing import Pool
-# Отсортировать зависимости
 
 
 def get_params(args):
@@ -14,7 +13,6 @@ def get_params(args):
                         dest='width', type=int)
     parser.add_argument('-H','--height', help='Height of resized images.', 
                         dest='height', type=int)
-                        # а где дефолтные значения?
     parser.add_argument('-p', '--processes', help='Number of processes to be used.', 
                         dest='processes', type=int, default=8)
     parser.add_argument('-x', '--extention', help='Extention of images.', 

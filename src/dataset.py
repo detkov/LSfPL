@@ -6,6 +6,7 @@ import cv2
 
 import albumentations as A
 from albumentations.pytorch import ToTensor
+import ttach as tta
 
 
 train_transforms = A.Compose([
@@ -14,12 +15,14 @@ train_transforms = A.Compose([
         A.ShiftScaleRotate(rotate_limit=90, p=1.0),
         A.HorizontalFlip(p=1.0),
         A.VerticalFlip(p=1.0),
+        A.RandomRotate90(p=1.0),
     ], p=0.5),
 
     # Pixels aug
     A.OneOf([
+        A.RandomBrightness(p=1.0),
         A.RandomBrightnessContrast(p=1.0),
-        A.RandomGamma(p=1.0)
+        A.RandomGamma(p=1.0),
     ], p=0.5),
 
 
@@ -34,6 +37,14 @@ test_transforms = A.Compose([
                 std=[0.229, 0.224, 0.225]),
     ToTensor()
 ])
+
+tta_transforms = tta.Compose(
+    [
+        tta.HorizontalFlip(),
+        tta.VerticalFlip(),
+        tta.Rotate90(angles=[0]),
+    ]
+)
 
 
 class MelanomaDataset(Dataset):

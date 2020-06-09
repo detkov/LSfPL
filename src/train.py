@@ -19,7 +19,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from torch.optim import AdamW
-from torch.optim.lr_scheduler import StepLR
+from torch.optim.lr_scheduler import ReduceLROnPlateau, StepLR
 
 from sklearn.metrics import roc_auc_score
 
@@ -64,14 +64,17 @@ def main(params):
     MODELS_DIR = config['MODELS_DIR']
     SUBMISSIONS_DIR = config['SUBMISSIONS_DIR']
     os.makedirs(join(MODELS_DIR, exp_name), exist_ok=True)
-    os.mknod(join(MODELS_DIR, exp_name, f'{exp_name}.txt'))
+    try: os.mknod(join(MODELS_DIR, exp_name, f'{exp_name}.txt'))
+    except: pass
 
     BS = config['batch_size']
     LR = config['learning_rate']
     EPOCHS = config['n_epochs']
     WORKERS = config['n_workers']
     ES_PATIENCE = config['early_stopping_patience']
-    STEP_SIZE = config['steplr_step_size']
+    REDUCELR_PATIENCE = config['reduce_lr_on_plateau_patience']
+    REDUCELR_FACTOR = config['reduce_lr_on_plateau_factor']
+    # STEP_SIZE = config['steplr_step_size']
 
     N_FOLDS = config['n_folds']
     images_size = config['images_size']
@@ -102,7 +105,8 @@ def main(params):
         model.cuda()
         
         optim = AdamW(model.parameters(), lr=LR, amsgrad=True)
-        scheduler = StepLR(optim, step_size=STEP_SIZE, gamma=0.3)
+        # scheduler = StepLR(optim, step_size=STEP_SIZE, gamma=0.3)
+        scheduler = ReduceLROnPlateau(optim, mode='max', patience=REDUCELR_PATIENCE, verbose=True, factor=REDUCELR_FACTOR)
         criterion = nn.BCEWithLogitsLoss()
 
         train_df = df_train[df_train['kfold'].isin(folds_to_train)].reset_index(drop=True)
@@ -148,7 +152,7 @@ def main(params):
                 val_auc, 
                 str(datetime.timedelta(seconds=time.time() - start_time))[:7]))
                 
-                scheduler.step()
+                scheduler.step(val_auc)
                 # During the first iteration (first epoch) best validation is set to None
                 if not best_val:
                     best_val = val_auc
@@ -192,7 +196,35 @@ def main(params):
     gc.collect()
     print('Submission is created...')
 
+    ###
+    print('Getting result on hold-outed set...')
 
-###
+    df = pd.read_csv(join(INPUT_DIR, f'{config["folds_train_file"]}.csv'))
+    df_hold_out = df[df['kfold'] == -1].reset_index(drop=True)
+    hold_out = MelanomaDataset(df_hold_out, INPUT_DIR, images_size, test_transforms)
+
+    preds = torch.zeros((len(hold_out), 1), dtype=torch.float32, device=device)
+
+    for fold in folds:
+        print(f'{fold} fold model:')
+        hold_out_loader = DataLoader(hold_out, batch_size=BS, shuffle=False, num_workers=WORKERS)
+
+        model_path = join(MODELS_DIR, exp_name, f'fold_{fold}_weight.pth')
+        model = torch.load(model_path)
+        model.eval()
+        tta_model = tta.ClassificationTTAWrapper(model, tta_transforms)
+        with torch.no_grad():
+            for i, (x_test, _) in enumerate(tqdm(hold_out_loader, total=len(hold_out_loader), position=0, leave=True)):
+                x_test = torch.tensor(x_test, device=device, dtype=torch.float32)
+                z_test = tta_model(x_test)
+                z_test = torch.sigmoid(z_test)
+                preds[i*x_test.shape[0]:i*x_test.shape[0] + x_test.shape[0]] += z_test
+    preds /= len(folds)
+    preds = preds.cpu().detach().numpy()
+
+    hold_out_auc = roc_auc_score(df_hold_out['target'].values, preds)
+    print(f'\nROC AUC on hold-outed set: {hold_out_auc:.4f}')
+
+
 if __name__ == "__main__":
     main(get_params(sys.argv[1:]))
