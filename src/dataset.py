@@ -37,16 +37,17 @@ test_transforms = A.Compose([
 
 
 class MelanomaDataset(Dataset):
-    def __init__(self, df, input_dir, transforms):
+    def __init__(self, df, input_dir, images_size, transforms):
         self.df = df
         self.input_dir = input_dir
+        self.images_size = images_size
         self.transforms = transforms
     
     def __len__(self):
         return self.df.shape[0]
     
     def __getitem__(self, idx):
-        image_src = join(self.input_dir, 'images_resized/', self.df.loc[idx, 'image_name'] + '.jpg')            
+        image_src = join(self.input_dir, f'images_resized_{self.images_size}/', self.df.loc[idx, 'image_name'] + '.jpg')            
         image = cv2.imread(image_src)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         

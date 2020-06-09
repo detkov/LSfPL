@@ -3,13 +3,15 @@ import sys
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
+# Зависимости должны быть отсортированы в алфавитном
+# порядке, в pycharm это делается командой optimize imports
 
 
 def get_params(args):
     parser = argparse.ArgumentParser(description='Makes a split of your train file.')
     parser.add_argument('-i', '--input', help='Path to `train.csv`.', 
                         dest='input', default='../input/train.csv')
-    parser.add_argument('-o','--output', help='Path to `tarin.csv` with folds.', 
+    parser.add_argument('-o','--output', help='Path to `train.csv` with folds.', 
                         dest='output', default='../input/train_folds.csv')
     parser.add_argument('-s', '--splits', help='Number of splits.', 
                         dest='splits', type=int, default=5)
@@ -34,7 +36,7 @@ if __name__ == "__main__":
 
     if params.valid != 0:
         skf = StratifiedKFold(n_splits=int(100/params.valid), random_state=params.randomstate)
-        for fold, (train, valid) in enumerate(skf.split(X, y)):
+        for fold, (_, valid) in enumerate(skf.split(X, y)):
             if fold == 0:
                 df.loc[valid, 'kfold'] = -1
             else:
@@ -49,6 +51,8 @@ if __name__ == "__main__":
     skf = StratifiedKFold(n_splits=params.splits, random_state=params.randomstate)
     for fold, (train, valid) in enumerate(skf.split(X, y)):
         df_train.loc[valid, 'kfold'] = fold
+  
+
 
     df = pd.concat([df_train, df_valid])
     df.reset_index(drop=True, inplace=True)
@@ -56,3 +60,4 @@ if __name__ == "__main__":
     print(df['kfold'].value_counts(dropna=False))
     print('\nClass "-1" is for validation')
     df.to_csv(params.output, index=False)
+    # Я бы разбил на отдельные функции все, чтобы в __main__ вызывалась только одна функция, а-ля create_folds()

@@ -4,7 +4,8 @@ n_epochs: 10
 n_workers: 8
 eraly_stopping: 1
 folds: 5
-imgs_size: 512x512
+images_size: 512x512
 model_name: tf_efficientnet_b3_ns
 experiment_name: exp_train_01
 use_test_labels: false
+seed: 42
