@@ -101,7 +101,7 @@ def main(params):
         model = timm.create_model(model_name, pretrained=True, num_classes=1)
         model.cuda()
         
-        optim = AdamW(model.parameters(), lr=LR, weight_decay=0.001, amsgrad=True)
+        optim = AdamW(model.parameters(), lr=LR, amsgrad=True)
         scheduler = StepLR(optim, step_size=STEP_SIZE, gamma=0.3)
         criterion = nn.BCEWithLogitsLoss()
 
@@ -148,7 +148,7 @@ def main(params):
                 val_auc, 
                 str(datetime.timedelta(seconds=time.time() - start_time))[:7]))
                 
-                scheduler.step(val_auc)
+                scheduler.step()
                 # During the first iteration (first epoch) best validation is set to None
                 if not best_val:
                     best_val = val_auc
