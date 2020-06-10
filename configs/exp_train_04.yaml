@@ -7,8 +7,8 @@ learning_rate: 0.001
 n_epochs: 20
 n_workers: 8
 early_stopping_patience: 5
-reduce_lr_on_plateau_patience: 4
-reduce_lr_on_plateau_factor: 0.3
+reduce_lr_on_plateau_patience: 3
+reduce_lr_on_plateau_factor: 0.2
 
 n_folds: 5
 images_size: 256x256

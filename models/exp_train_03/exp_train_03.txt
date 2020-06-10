@@ -94,3 +94,5 @@ Epoch 11: | Loss: 51.4792 | Val roc_auc: 0.8612 | Training time: 0:02:42
 Epoch 12: | Loss: 52.4252 | Val roc_auc: 0.8594 | Training time: 0:02:41
 Epoch 13: | Loss: 51.8705 | Val roc_auc: 0.8609 | Training time: 0:02:41
 Early stopping. Best Val roc_auc: 0.8617
+Getting result on hold-outed set...
+ROC AUC on hold-outed set: 0.7252

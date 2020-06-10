@@ -230,3 +230,5 @@ Epoch    12: reducing learning rate of group 0 to 1.2000e-05.
 Epoch 012: | Loss: 84.587 | Val roc_auc: 0.899 | Training time: 0:10:48
 Early stopping. Best Val roc_auc: 0.901
 100%|███████████████████████████████████████████████████████████| 1099/1099 [01:08<00:00, 16.02it/s]
+Getting result on hold-outed set...
+ROC AUC on hold-outed set: 0.8263

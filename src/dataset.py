@@ -38,13 +38,7 @@ test_transforms = A.Compose([
     ToTensor()
 ])
 
-tta_transforms = tta.Compose(
-    [
-        tta.HorizontalFlip(),
-        tta.VerticalFlip(),
-        tta.Rotate90(angles=[0]),
-    ]
-)
+tta_transforms = tta.aliases.d4_transform()
 
 
 class MelanomaDataset(Dataset):

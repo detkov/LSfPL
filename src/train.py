@@ -23,7 +23,7 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau, StepLR
 
 from sklearn.metrics import roc_auc_score
 
-from dataset import MelanomaDataset, train_transforms, test_transforms
+from dataset import MelanomaDataset, train_transforms, test_transforms, tta_transforms
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -47,7 +47,6 @@ def main(params):
 
     print('Config params:')
     print(config)
-
 
     ###
     def seed_everything(seed):
@@ -84,12 +83,10 @@ def main(params):
     torch.cuda.empty_cache()
     gc.collect()
 
-
     ###
     df_train = pd.read_csv(join(INPUT_DIR, f'{config["folds_train_file"]}.csv'))
     df_test = pd.read_csv(join(INPUT_DIR, 'sample_submission.csv'))
     test = MelanomaDataset(df_test, INPUT_DIR, images_size, test_transforms)
-
 
     ###
     preds = torch.zeros((len(test), 1), dtype=torch.float32, device=device)
@@ -172,7 +169,7 @@ def main(params):
         test_loader = DataLoader(test, batch_size=BS, shuffle=False, num_workers=WORKERS)
         model = torch.load(model_path)
         model.eval()
-        tta_model = tta.ClassificationTTAWrapper(model, tta.aliases.d4_transform())
+        tta_model = tta.ClassificationTTAWrapper(model, tta_transforms)
         with torch.no_grad():        
             for i, (x_test, _) in enumerate(tqdm(test_loader, total=len(test_loader), position=0, leave=True)):
                 x_test = torch.tensor(x_test, device=device, dtype=torch.float32)
@@ -185,7 +182,6 @@ def main(params):
         gc.collect()
 
     preds /= len(folds)
-
 
     ###
     print('Making submission...')
