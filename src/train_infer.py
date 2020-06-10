@@ -73,6 +73,7 @@ def main(params):
     ES_PATIENCE = config['early_stopping_patience']
     REDUCELR_PATIENCE = config['reduce_lr_on_plateau_patience']
     REDUCELR_FACTOR = config['reduce_lr_on_plateau_factor']
+    WEIGHT_DECAY = config['weight_decay']
     # STEP_SIZE = config['steplr_step_size']
 
     N_FOLDS = config['n_folds']
@@ -101,7 +102,7 @@ def main(params):
         model = timm.create_model(model_name, pretrained=True, num_classes=1)
         model.cuda()
         
-        optim = AdamW(model.parameters(), lr=LR, amsgrad=True)
+        optim = AdamW(model.parameters(), lr=LR, weight_decay=WEIGHT_DECAY, amsgrad=True)
         # scheduler = StepLR(optim, step_size=STEP_SIZE, gamma=0.3)
         scheduler = ReduceLROnPlateau(optim, mode='max', patience=REDUCELR_PATIENCE, verbose=True, factor=REDUCELR_FACTOR)
         criterion = nn.BCEWithLogitsLoss()

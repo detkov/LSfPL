@@ -4,19 +4,18 @@ SUBMISSIONS_DIR: ../submissions/
 
 batch_size: 10
 learning_rate: 0.0003
-n_epochs: 15
+n_epochs: 25
 n_workers: 8
-early_stopping_patience: 3
+early_stopping_patience: 4
 reduce_lr_on_plateau_patience: 1
 reduce_lr_on_plateau_factor: 0.2
 weight_decay: 0.001
 
-
 n_folds: 5
 images_size: 512x512
 model_name: tf_efficientnet_b3_ns
-experiment_name: exp_train_02
+experiment_name: exp_train_05
 use_test_labels: false
 seed: 42
 device: cuda:0
-folds_train_file: train_folds_stratified
+folds_train_file: train_folds_groups

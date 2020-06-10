@@ -9,6 +9,7 @@ n_workers: 8
 early_stopping_patience: 5
 reduce_lr_on_plateau_patience: 3
 reduce_lr_on_plateau_factor: 0.2
+weight_decay: 0.01
 
 n_folds: 5
 images_size: 256x256
