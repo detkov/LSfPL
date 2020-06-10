@@ -10,9 +10,9 @@ from multiprocessing import Pool
 def get_params(args):
     parser = argparse.ArgumentParser(description='Resizes your dataset.\n***CAUTION: -h is for help, while -H is for height***')
     parser.add_argument('-w', '--width', help='Width of resized images.', 
-                        dest='width', type=int)
+                        dest='width', type=int, required=True)
     parser.add_argument('-H','--height', help='Height of resized images.', 
-                        dest='height', type=int)
+                        dest='height', type=int, required=True)
     parser.add_argument('-p', '--processes', help='Number of processes to be used.', 
                         dest='processes', type=int, default=8)
     parser.add_argument('-x', '--extention', help='Extention of images.', 
@@ -24,8 +24,7 @@ def get_params(args):
     return parser.parse_args(args)
 
 
-if __name__ == "__main__":
-    params = get_params(sys.argv[1:])
+def main(params):
     print((f'Resize params: width is {params.width}, height is {params.height}.'
            f'\nNumber of processes: {params.processes}.'
            f'\nLooking for .{params.extention} images.'))
@@ -43,3 +42,7 @@ if __name__ == "__main__":
 
     with Pool(params.processes) as p:
         list(tqdm(p.imap(resize_img, pathes), total=len(pathes)))
+
+
+if __name__ == "__main__":
+    main(get_params(sys.argv[1:]))

@@ -26,7 +26,6 @@ train_transforms = A.Compose([
     ], p=0.5),
 
 
-
     A.Normalize(mean=[0.485, 0.456, 0.406], 
                 std=[0.229, 0.224, 0.225]),
     ToTensor()

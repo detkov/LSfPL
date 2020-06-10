@@ -16,7 +16,7 @@ def get_params(args):
     parser.add_argument('-v', '--valid', help='Percent of data to be hold-outed for validation (Ensembling, WAE, etc.).', 
                         dest='valid', type=int, default=0)
     parser.add_argument('-f', '--feature', help='Unique feature of row, f.e. "image_name".', 
-                        dest='feature')
+                        dest='feature', required=True)
     parser.add_argument('-t', '--target', help='Target feature to be splitted by.', 
                         dest='target', default='target')
     parser.add_argument('-g', '--group', help='Group feature to be splitted by.', 

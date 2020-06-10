@@ -18,7 +18,7 @@ def get_params(args):
     parser.add_argument('-r', '--randomstate', help='random_state parameter value.', 
                         dest='randomstate', type=int, default=42)
     parser.add_argument('-f', '--feature', help='Unique feature of row, f.e. "image_name".', 
-                        dest='feature')
+                        dest='feature', required=True)
     parser.add_argument('-t', '--target', help='Target feature to be splitted by.', 
                         dest='target', default='target')
     return parser.parse_args(args)
