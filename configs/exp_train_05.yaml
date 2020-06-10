@@ -2,7 +2,7 @@ INPUT_DIR: ../input/
 MODELS_DIR: ../models/
 SUBMISSIONS_DIR: ../submissions/
 
-batch_size: 32
+batch_size: 10
 learning_rate: 0.001
 n_epochs: 25
 n_workers: 8
