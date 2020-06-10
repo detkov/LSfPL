@@ -1,0 +1,98 @@
+Config params:
+{'INPUT_DIR': '../input/', 'MODELS_DIR': '../models/', 'SUBMISSIONS_DIR': '../submissions/', 'batch_size': 32, 'learning_rate': 0.001, 'n_epochs': 20, 'n_workers': 8, 'early_stopping_patience': 6, 'steplr_step_size': 3, 'n_folds': 5, 'images_size': '256x256', 'model_name': 'tf_efficientnet_b3_ns', 'experiment_name': 'exp_train_03', 'use_test_labels': False, 'seed': 42, 'device': 'cuda:0', 'folds_train_file': 'train_folds'}
+Fold: 0
+Epoch 01: | Loss: 109.6243 | Val roc_auc: 0.7499 | Training time: 0:02:43
+Epoch 02: | Loss: 61.0610 | Val roc_auc: 0.7862 | Training time: 0:02:41
+Epoch 03: | Loss: 72.5343 | Val roc_auc: 0.7827 | Training time: 0:02:41
+Epoch 04: | Loss: 56.9177 | Val roc_auc: 0.8184 | Training time: 0:02:41
+Epoch 05: | Loss: 55.3329 | Val roc_auc: 0.8126 | Training time: 0:02:41
+Epoch 06: | Loss: 55.2637 | Val roc_auc: 0.7787 | Training time: 0:02:41
+Epoch 07: | Loss: 53.1163 | Val roc_auc: 0.8295 | Training time: 0:02:41
+Epoch 08: | Loss: 52.6799 | Val roc_auc: 0.8316 | Training time: 0:02:41
+Epoch 09: | Loss: 51.8922 | Val roc_auc: 0.7891 | Training time: 0:02:41
+Epoch 10: | Loss: 51.2296 | Val roc_auc: 0.8284 | Training time: 0:02:41
+Epoch 11: | Loss: 51.2247 | Val roc_auc: 0.8294 | Training time: 0:02:41
+Epoch 12: | Loss: 50.9445 | Val roc_auc: 0.8310 | Training time: 0:02:41
+Epoch 13: | Loss: 51.5991 | Val roc_auc: 0.8296 | Training time: 0:02:44
+Epoch 14: | Loss: 51.0787 | Val roc_auc: 0.8313 | Training time: 0:02:43
+Early stopping. Best Val roc_auc: 0.8316
+Fold: 1
+Epoch 01: | Loss: 97.8703 | Val roc_auc: 0.7626 | Training time: 0:02:41
+Epoch 02: | Loss: 62.7372 | Val roc_auc: 0.8286 | Training time: 0:02:42
+Epoch 03: | Loss: 58.8767 | Val roc_auc: 0.8408 | Training time: 0:02:41
+Epoch 04: | Loss: 53.6911 | Val roc_auc: 0.8595 | Training time: 0:02:42
+Epoch 05: | Loss: 52.3760 | Val roc_auc: 0.8592 | Training time: 0:02:42
+Epoch 06: | Loss: 51.2931 | Val roc_auc: 0.8597 | Training time: 0:02:42
+Epoch 07: | Loss: 49.8643 | Val roc_auc: 0.8672 | Training time: 0:02:42
+Epoch 08: | Loss: 49.3139 | Val roc_auc: 0.8722 | Training time: 0:02:41
+Epoch 09: | Loss: 47.7974 | Val roc_auc: 0.8726 | Training time: 0:02:41
+Epoch 10: | Loss: 46.7084 | Val roc_auc: 0.8725 | Training time: 0:02:42
+Epoch 11: | Loss: 46.4392 | Val roc_auc: 0.8728 | Training time: 0:02:41
+Epoch 12: | Loss: 45.8662 | Val roc_auc: 0.8694 | Training time: 0:02:42
+Epoch 13: | Loss: 45.1956 | Val roc_auc: 0.8703 | Training time: 0:02:42
+Epoch 14: | Loss: 46.0784 | Val roc_auc: 0.8729 | Training time: 0:02:42
+Epoch 15: | Loss: 45.2340 | Val roc_auc: 0.8722 | Training time: 0:02:42
+Epoch 16: | Loss: 44.6023 | Val roc_auc: 0.8714 | Training time: 0:02:42
+Epoch 17: | Loss: 44.5620 | Val roc_auc: 0.8743 | Training time: 0:02:42
+Epoch 18: | Loss: 46.0097 | Val roc_auc: 0.8700 | Training time: 0:02:42
+Epoch 19: | Loss: 44.3800 | Val roc_auc: 0.8725 | Training time: 0:02:44
+Epoch 20: | Loss: 45.2056 | Val roc_auc: 0.8743 | Training time: 0:02:42
+Fold: 2
+Epoch 01: | Loss: 92.5672 | Val roc_auc: 0.7442 | Training time: 0:02:43
+Epoch 02: | Loss: 59.1736 | Val roc_auc: 0.7860 | Training time: 0:02:42
+Epoch 03: | Loss: 67.9408 | Val roc_auc: 0.7654 | Training time: 0:02:42
+Epoch 04: | Loss: 54.6748 | Val roc_auc: 0.7914 | Training time: 0:02:41
+Epoch 05: | Loss: 54.3730 | Val roc_auc: 0.7919 | Training time: 0:02:42
+Epoch 06: | Loss: 53.2008 | Val roc_auc: 0.7904 | Training time: 0:02:41
+Epoch 07: | Loss: 51.0285 | Val roc_auc: 0.7952 | Training time: 0:02:42
+Epoch 08: | Loss: 50.4113 | Val roc_auc: 0.7964 | Training time: 0:02:42
+Epoch 09: | Loss: 50.4013 | Val roc_auc: 0.7951 | Training time: 0:02:42
+Epoch 10: | Loss: 49.1169 | Val roc_auc: 0.7985 | Training time: 0:02:42
+Epoch 11: | Loss: 48.3205 | Val roc_auc: 0.7983 | Training time: 0:02:41
+Epoch 12: | Loss: 49.0866 | Val roc_auc: 0.7989 | Training time: 0:02:42
+Epoch 13: | Loss: 48.8725 | Val roc_auc: 0.7984 | Training time: 0:02:42
+Epoch 14: | Loss: 48.0982 | Val roc_auc: 0.7958 | Training time: 0:02:42
+Epoch 15: | Loss: 47.6712 | Val roc_auc: 0.7972 | Training time: 0:02:41
+Epoch 16: | Loss: 47.6159 | Val roc_auc: 0.7969 | Training time: 0:02:42
+Epoch 17: | Loss: 47.3875 | Val roc_auc: 0.7986 | Training time: 0:02:42
+Epoch 18: | Loss: 47.9205 | Val roc_auc: 0.7978 | Training time: 0:02:42
+Early stopping. Best Val roc_auc: 0.7989
+Fold: 3
+Epoch 01: | Loss: 91.1395 | Val roc_auc: 0.8203 | Training time: 0:02:42
+Epoch 02: | Loss: 73.7332 | Val roc_auc: 0.7901 | Training time: 0:02:41
+Epoch 03: | Loss: 73.4856 | Val roc_auc: 0.8473 | Training time: 0:02:42
+Epoch 04: | Loss: 56.5261 | Val roc_auc: 0.8725 | Training time: 0:02:42
+Epoch 05: | Loss: 55.2286 | Val roc_auc: 0.8792 | Training time: 0:02:41
+Epoch 06: | Loss: 54.4575 | Val roc_auc: 0.8730 | Training time: 0:02:42
+Epoch 07: | Loss: 54.5938 | Val roc_auc: 0.8775 | Training time: 0:02:42
+Epoch 08: | Loss: 53.4518 | Val roc_auc: 0.8824 | Training time: 0:02:42
+Epoch 09: | Loss: 52.3142 | Val roc_auc: 0.8850 | Training time: 0:02:42
+Epoch 10: | Loss: 52.7381 | Val roc_auc: 0.8904 | Training time: 0:02:41
+Epoch 11: | Loss: 52.3624 | Val roc_auc: 0.8893 | Training time: 0:02:42
+Epoch 12: | Loss: 51.0475 | Val roc_auc: 0.8884 | Training time: 0:02:42
+Epoch 13: | Loss: 51.2405 | Val roc_auc: 0.8905 | Training time: 0:02:41
+Epoch 14: | Loss: 52.4661 | Val roc_auc: 0.8910 | Training time: 0:02:41
+Epoch 15: | Loss: 51.7839 | Val roc_auc: 0.8907 | Training time: 0:02:41
+Epoch 16: | Loss: 51.5269 | Val roc_auc: 0.8909 | Training time: 0:02:41
+Epoch 17: | Loss: 51.3728 | Val roc_auc: 0.8880 | Training time: 0:02:42
+Epoch 18: | Loss: 51.6110 | Val roc_auc: 0.8909 | Training time: 0:02:41
+Epoch 19: | Loss: 52.3321 | Val roc_auc: 0.8824 | Training time: 0:02:41
+Epoch 20: | Loss: 50.8866 | Val roc_auc: 0.8857 | Training time: 0:02:41
+Early stopping. Best Val roc_auc: 0.8910
+Fold: 4
+Epoch 01: | Loss: 103.3805 | Val roc_auc: 0.7846 | Training time: 0:02:41
+Epoch 02: | Loss: 60.8702 | Val roc_auc: 0.7994 | Training time: 0:02:41
+Epoch 03: | Loss: 58.2068 | Val roc_auc: 0.8233 | Training time: 0:02:41
+Epoch 04: | Loss: 55.4877 | Val roc_auc: 0.8441 | Training time: 0:02:42
+Epoch 05: | Loss: 54.8538 | Val roc_auc: 0.8521 | Training time: 0:02:41
+Epoch 06: | Loss: 54.3122 | Val roc_auc: 0.8576 | Training time: 0:02:41
+Epoch 07: | Loss: 52.7613 | Val roc_auc: 0.8617 | Training time: 0:02:41
+Epoch 08: | Loss: 52.3592 | Val roc_auc: 0.8597 | Training time: 0:02:41
+Epoch 09: | Loss: 52.5820 | Val roc_auc: 0.8588 | Training time: 0:02:41
+Epoch 10: | Loss: 51.4698 | Val roc_auc: 0.8601 | Training time: 0:02:42
+Epoch 11: | Loss: 51.4792 | Val roc_auc: 0.8612 | Training time: 0:02:42
+Epoch 12: | Loss: 52.4252 | Val roc_auc: 0.8594 | Training time: 0:02:41
+Epoch 13: | Loss: 51.8705 | Val roc_auc: 0.8609 | Training time: 0:02:41
+Early stopping. Best Val roc_auc: 0.8617
+Getting result on hold-outed set...
+ROC AUC on hold-outed set: 0.7252
