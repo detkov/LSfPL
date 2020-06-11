@@ -6,21 +6,21 @@ from sklearn.model_selection import StratifiedKFold
 
 
 def get_params(args):
-    parser = argparse.ArgumentParser(description='Makes a split of your train file.')
+    parser = argparse.ArgumentParser(description='Makes a stratified split of your train file.')
     parser.add_argument('-i', '--input', help='Path to `train.csv`.', 
-                        dest='input', default='../input/train.csv')
-    parser.add_argument('-o','--output', help='Path to `train.csv` with folds.', 
-                        dest='output', default='../input/train_folds.csv')
+                        dest='input', type=str, default='../input/train.csv')
+    parser.add_argument('-o','--output', help='Path to `train.csv` with folds, passing arg adds `_folds_stratified` to the name of the input file.', 
+                        dest='output', type=str)
     parser.add_argument('-s', '--splits', help='Number of splits.', 
                         dest='splits', type=int, default=5)
     parser.add_argument('-v', '--valid', help='Percent of data to be hold-outed for validation (Ensembling, WAE, etc.).', 
                         dest='valid', type=int, default=0)
+    parser.add_argument('-f', '--feature', help='Unique feature of row, f.e. "image_name".', 
+                        dest='feature', type=str, required=True)
+    parser.add_argument('-t', '--target', help='Target feature to be splitted by.', 
+                        dest='target', type=str, default='target')
     parser.add_argument('-r', '--randomstate', help='random_state parameter value.', 
                         dest='randomstate', type=int, default=42)
-    parser.add_argument('-f', '--feature', help='Unique feature of row, f.e. "image_name".', 
-                        dest='feature', required=True)
-    parser.add_argument('-t', '--target', help='Target feature to be splitted by.', 
-                        dest='target', default='target')
     return parser.parse_args(args)
 
 
@@ -56,7 +56,10 @@ def main(params):
     print('Number of samples per class:')
     print(df['kfold'].value_counts(dropna=False))
     print('\nClass "-1" is for validation')
-    df.to_csv(params.output, index=False)
+    if params.output is None:
+        df.to_csv(f'{params.input[:-4]}_folds_stratified.csv', index=False)
+    else:
+        df.to_csv(params.output, index=False)
 
 
 if __name__ == "__main__":
