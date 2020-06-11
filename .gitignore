@@ -1,7 +1,6 @@
 *.zip
 *.jpg
 # *.csv
-logs/
 secret_file.txt
 
 # *.pth

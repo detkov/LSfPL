@@ -14,7 +14,7 @@ weight_decay: 0.01
 n_folds: 5
 images_size: 256x256
 model_name: tf_efficientnet_b3_ns
-experiment_name: exp_train_04
+exp_train_name: exp_train_04
 use_test_labels: false
 seed: 42
 device: cuda:0

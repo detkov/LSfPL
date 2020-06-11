@@ -30,7 +30,7 @@ warnings.filterwarnings('ignore')
 
 
 def get_params(args):
-    parser = argparse.ArgumentParser(description='Start training process')
+    parser = argparse.ArgumentParser(description='Start training process.')
     parser.add_argument('-c', '--config', help='Name of the config file.', 
                         dest='config')
     return parser.parse_args(args)
@@ -104,7 +104,8 @@ def main(params):
         
         optim = AdamW(model.parameters(), lr=LR, weight_decay=WEIGHT_DECAY, amsgrad=True)
         # scheduler = StepLR(optim, step_size=STEP_SIZE, gamma=0.3)
-        scheduler = ReduceLROnPlateau(optim, mode='max', patience=REDUCELR_PATIENCE, verbose=True, factor=REDUCELR_FACTOR)
+        scheduler = ReduceLROnPlateau(optim, patience=REDUCELR_PATIENCE, factor=REDUCELR_FACTOR, 
+                                      mode='max', verbose=True)
         criterion = nn.BCEWithLogitsLoss()
 
         train_df = df_train[df_train['kfold'].isin(folds_to_train)].reset_index(drop=True)
@@ -194,7 +195,7 @@ def main(params):
     print('Submission is created...')
 
     ###
-    print('Getting result on hold-outed set...')
+    print('Getting result on hold-out set...')
 
     df = pd.read_csv(join(INPUT_DIR, f'{config["folds_train_file"]}.csv'))
     df_hold_out = df[df['kfold'] == -1].reset_index(drop=True)
@@ -220,7 +221,7 @@ def main(params):
     preds = preds.cpu().detach().numpy()
 
     hold_out_auc = roc_auc_score(df_hold_out['target'].values, preds)
-    print(f'\nROC AUC on hold-outed set: {hold_out_auc:.4f}')
+    print(f'\nROC AUC on hold-out set: {hold_out_auc:.4f}')
 
 
 if __name__ == "__main__":

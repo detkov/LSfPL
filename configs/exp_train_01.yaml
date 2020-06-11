@@ -9,10 +9,12 @@ n_workers: 8
 early_stopping_patience: 1
 
 
+
+
 n_folds: 5
 images_size: 512x512
 model_name: tf_efficientnet_b3_ns
-experiment_name: exp_train_01
+exp_train_name: exp_train_01
 use_test_labels: false
 seed: 42
 device: cuda:0
