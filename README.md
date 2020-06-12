@@ -17,10 +17,10 @@ Bachelor Thesis: Influence of the label smoothing for pseudo labeled data for tr
   - [x] Train, predict and make first submit
 - [ ] Achieve best possible score:
   - [ ] Try different augmentations
-  - [ ] Try different models 
+  - [x] Try different models 
   - [ ] Try different optimizers (SWA, RAdam, LARS, AdamW, Ralamb, LookAHead, etc.)
   - [ ] Try combining weights of different epochs 
-  - [ ] Make OOF prediction 
+  - [x] Make OOF prediction 
   - [ ] Make ensemble of models
   - [ ] Try label post-processing 
 - [ ] Research influence of the label smoothing for pseudo labeling
