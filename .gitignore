@@ -3,7 +3,7 @@
 # *.csv
 secret_file.txt
 
-# *.pth
+*.pth
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
