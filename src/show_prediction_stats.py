@@ -19,8 +19,8 @@ def get_params(args):
     return parser.parse_args(args)
 
 
-custom_bins = [[0, [0, 0.05]], [0, [0.05 - 1e-12, 0.10]], [0, [0.10 - 1e-12, 0.15]], [0, [0.15 - 1e-12, 0.20]], [0, [0.20 - 1e-12, 0.50 - 1e-12]], 
-               [1, [0.50, 0.80 - 1e-12]], [1, [0.80, 0.85 - 1e-12]], [1, [0.85, 0.90 - 1e-12]], [1, [0.90, 0.95 - 1e-12]], [1, [0.95, 1]]]
+custom_bins = [[0, [0, 0.05]], [0, [0.05 - 1e-12, 0.10]], [0, [0.10 - 1e-12, 0.15]], [0, [0.15 - 1e-12, 0.20]], [0, [0.20 - 1e-12, 0.50]], 
+               [1, [0.50 + 1e-12, 0.80 - 1e-12]], [1, [0.80, 0.85 - 1e-12]], [1, [0.85, 0.90 - 1e-12]], [1, [0.90, 0.95 - 1e-12]], [1, [0.95, 1]]]
 
 
 def print_distribution_info(df: pd.DataFrame, target: str, name_of_df: str):
@@ -53,7 +53,7 @@ def print_bins_distribution_info(df: pd.DataFrame,
         else:
             indices[i] = indices[i][:-1] + ')'
     indices[0] = '[' + indices[0][1:-1] + ']'
-    indices[(len(indices) // 2)-1] = indices[(len(indices) // 2)-1][:-1] + ')'
+    indices[len(indices) // 2] = '(' + indices[len(indices) // 2][1:]
     indices[-1] = indices[-1][:-1] + ']'
 
     rows_df = pd.DataFrame(rows, index=indices, columns=['Abs', '%', '% of its class'])
