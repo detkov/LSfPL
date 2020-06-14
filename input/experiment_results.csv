@@ -35,6 +35,7 @@ exp_train_02,rdf_bnd,80,2,folds_stratified,false,0.8021
 exp_train_02,str_undspml,50,5,folds_stratified,false,0.7825
 exp_train_02,str_undspml,100,3,folds_stratified,true,0.7759
 exp_train_02,str_undspml,80,5,folds_stratified,true,0.8504
+exp_train_02,rdf_bnd,100,1,folds_stratified,true,0.8313
 exp_train_02,rdf_bnd,80,4,folds_stratified,true,0.8507
 exp_train_02,rnd_undspml,80,3,folds_stratified,false,0.7728
 exp_train_02,rnd_undspml,50,3,folds_stratified,false,0.7796
@@ -46,6 +47,7 @@ exp_train_02,rnd_undspml,80,1,folds_stratified,true,0.8424
 exp_train_02,str_undspml,80,4,folds_stratified,false,0.8027
 exp_train_02,rdf_bnd,80,2,folds_stratified,true,0.8439
 exp_train_02,rnd_undspml,50,2,folds_stratified,false,0.8105
+exp_train_02,str_undspml,100,1,folds_stratified,true,0.8259
 exp_train_02,rdf_bnd,80,1,folds_stratified,false,0.8081
 exp_train_02,rnd_undspml,80,2,folds_stratified,false,0.79
 exp_train_02,rdf_bnd,50,2,folds_stratified,false,0.7995
@@ -62,6 +64,7 @@ exp_train_02,rdf_bnd,80,4,folds_stratified,false,0.8078
 exp_train_02,rdf_bnd,50,6,folds_stratified,true,0.8437
 exp_train_02,str_undspml,100,4,folds_stratified,true,0.7778
 exp_train_02,rdf_bnd,80,5,folds_stratified,true,0.8453
+exp_train_02,rnd_undspml,100,1,folds_stratified,true,0.8387
 exp_train_02,str_undspml,80,4,folds_stratified,true,0.8535
 exp_train_02,rdf_bnd,100,5,folds_stratified,true,0.82
 exp_train_02,rnd_undspml,50,6,folds_stratified,false,0.7885
@@ -102,3 +105,8 @@ exp_train_02,str_undspml,80,5,folds_stratified,false,0.7623
 exp_train_02,rnd_undspml,100,5,folds_stratified,true,0.785
 exp_train_02,str_undspml,50,1,folds_stratified,true,0.8504
 exp_train_02,,,,,,0.8263
+exp_train_03,,,,,,0.7252
+exp_train_04,,,,,,0.862
+exp_train_05,,,,,,0.8892
+exp_train_06,,,,,,0.904
+exp_train_07,,,,,,0.8529
