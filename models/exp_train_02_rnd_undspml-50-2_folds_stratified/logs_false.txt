@@ -1,0 +1,35 @@
+Config params:
+{'INPUT_DIR': '../input/', 'MODELS_DIR': '../models/', 'SUBMISSIONS_DIR': '../submissions/', 'SMOOTHEDLABELS_DIR': '../input/pseudo-labels/smoothed-labels/', 'batch_size': 10, 'learning_rate': 0.001, 'n_epochs': 3, 'n_workers': 8, 'weight_decay': 0.001, 'n_folds': 5, 'images_size': '512x512', 'model_name': 'tf_efficientnet_b3_ns', 'exp_train_name': 'exp_train_02', 'seed': 42, 'device': 'cuda:0', 'folds_train_file': 'train_folds_stratified'}
+Fold: 0
+false
+Epoch 01: | Loss: 58.9152 | Training time: 0:00:46
+Epoch 02: | Loss: 58.1045 | Training time: 0:00:42
+Epoch 03: | Loss: 57.8247 | Training time: 0:00:42
+Fold: 1
+false
+Epoch 01: | Loss: 57.5006 | Training time: 0:00:42
+Epoch 02: | Loss: 54.1722 | Training time: 0:00:42
+Epoch 03: | Loss: 54.5466 | Training time: 0:00:42
+Fold: 2
+false
+Epoch 01: | Loss: 57.9332 | Training time: 0:00:42
+Epoch 02: | Loss: 56.5847 | Training time: 0:00:42
+Epoch 03: | Loss: 55.2656 | Training time: 0:00:42
+Fold: 3
+false
+Epoch 01: | Loss: 56.6543 | Training time: 0:00:42
+Epoch 02: | Loss: 56.1117 | Training time: 0:00:42
+Epoch 03: | Loss: 55.5167 | Training time: 0:00:42
+Fold: 4
+false
+Epoch 01: | Loss: 56.3286 | Training time: 0:00:42
+Epoch 02: | Loss: 55.1644 | Training time: 0:00:42
+Epoch 03: | Loss: 55.2620 | Training time: 0:00:42
+Getting result on hold-out set...
+0 fold model:
+1 fold model:
+2 fold model:
+3 fold model:
+4 fold model:
+
+ROC AUC on hold-out set: 0.8105

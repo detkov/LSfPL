@@ -101,7 +101,8 @@ def main(params):
         model = timm.create_model(model_name, pretrained=True, num_classes=1)
         model = torch.load(join(MODELS_DIR, exp_train_name, f'fold_{fold}_weight.pth'))
         
-        if params.train_only_last_layer:
+        print(params.train_only_last_layer)
+        if params.train_only_last_layer == 'true':
             for parameter in model.parameters():
                 parameter.requires_grad = False
             for parameter in model.classifier.parameters():
