@@ -1,4 +1,4 @@
-# LSoPL - Label Smoothing of Pseudo Labeling
+# LSoPLD - Label Smoothing of Pseudo Labeled Data
 This repository contains the code used to accomplish N.S. Detkov's bachelor's thesis.
 
 Bachelor's Thesis: **Influence of the label smoothing of pseudo labeled data on training CNN**
