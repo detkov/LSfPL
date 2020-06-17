@@ -220,9 +220,13 @@ def main(params):
     preds /= len(folds)
     preds = preds.cpu().detach().numpy()
 
-    hold_out_auc = roc_auc_score(df_hold_out['target'].values, preds)
-    print(f'\nROC AUC on hold-out set: {hold_out_auc:.4f}')
+    df_hold_out_pred = df_hold_out[['image_name', 'target']]
+    df_hold_out_pred['prediction'] = preds.reshape(-1, ).tolist()
+    df_hold_out_pred.to_csv(join(MODELS_DIR, exp_name, f'{exp_name}_hold_out.csv'), index=False)
 
+    hold_out_auc = roc_auc_score(df_hold_out['target'].values, preds)
+    os.mknod(join(MODELS_DIR, exp_name, f'roc-auc:{hold_out_auc:.4f}'))
+    print(f'\nROC AUC on hold-out set: {hold_out_auc:.4f}')
 
 if __name__ == "__main__":
     main(get_params(sys.argv[1:]))

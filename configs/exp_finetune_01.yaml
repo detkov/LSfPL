@@ -1,7 +1,7 @@
 INPUT_DIR: ../input/
 MODELS_DIR: ../models/
 SUBMISSIONS_DIR: ../submissions/
-SMOOTHEDLABELS_DIR: ../input/pseudo-labels/smoothed-labels/
+SMOOTHEDLABELS_DIR: ../submissions/pseudo-labels/smoothed-labels/
 
 batch_size: 10
 learning_rate: 0.001

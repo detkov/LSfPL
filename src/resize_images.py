@@ -5,6 +5,7 @@ from PIL import Image
 from glob import glob
 from tqdm import tqdm
 from multiprocessing import Pool
+from itertools import product
 
 
 def get_params(args):
@@ -24,6 +25,13 @@ def get_params(args):
     return parser.parse_args(args)
 
 
+def resize_img(img_path: str, output_path:str,
+               width: int, height: int):
+    img = Image.open(img_path)
+    img = img.resize((width, height), Image.BICUBIC)
+    img.save(os.path.join(output_path, os.path.basename(img_path)))
+
+
 def main(params):
     print((f'Resize params: width is {params.width}, height is {params.height}.'
            f'\nNumber of processes: {params.processes}.'
@@ -33,15 +41,9 @@ def main(params):
     pathes = glob(os.path.join(params.input, f'*.{params.extention}'))
     print(f'{len(pathes)} images found at {params.input}')
     print(f'Started resizing process, saving resized images to {params.output}')
-    
-    def resize_img(img_path: str):
-        img = Image.open(img_path)
-        img = img.resize((params.width, params.height), Image.BICUBIC)
-        img.save(os.path.join(params.output, os.path.basename(img_path)))
-
 
     with Pool(params.processes) as p:
-        list(tqdm(p.imap(resize_img, pathes), total=len(pathes)))
+        list(tqdm(p.starmap(resize_img, product(pathes, [params.output], [params.width], [params.height])), total=len(pathes)))
 
 
 if __name__ == "__main__":

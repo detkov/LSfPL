@@ -89,10 +89,6 @@ def main(params):
     df_train = pd.read_csv(join(SMOOTHEDLABELS_DIR, f'{folds_train_file}.csv'))
     train = MelanomaDataset(df_train, INPUT_DIR, images_size, train_transforms)
 
-    # df_test = pd.read_csv(join(INPUT_DIR, 'sample_submission.csv'))
-    # test = MelanomaDataset(df_test, INPUT_DIR, images_size, test_transforms)
-
-
     folds = list(range(N_FOLDS))
     for fold in folds:
         print(f'Fold: {fold}')
