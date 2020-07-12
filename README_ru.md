@@ -1,11 +1,10 @@
-# LSoPLD - Label Smoothing of Pseudo-Labeled Data
+# Бакалаврская выпускная квалификационная работа
 > Thesis can be found here: [`bs_thesis_en.pdf`](https://github.com/detkov/LSoPLD/blob/master/bs_thesis_en.pdf)  
-> Диплом : [`bs_thesis_ru.pdf`](https://github.com/detkov/LSoPLD/blob/master/bs_thesis_ru.pdf)
+> Диплом расположен тут: [`bs_thesis_ru.pdf`](https://github.com/detkov/LSoPLD/blob/master/bs_thesis_ru.pdf)
 
 Данный репозиторий содержит код, использованный для написания бакалаврской выпускной квалификационной работы Деткова Н.С..
 
 Тема: *Влияние label smoothing'а псевдо-размеченных данных на обучение свёрточных нейронных сетей*
-
 
 Этапы для восстановления решения:  
 1. Скачивание данных с [сайта](https://www.kaggle.com/c/siim-isic-melanoma-classification/data) и распаковка в папку `input/`

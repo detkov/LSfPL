@@ -1,14 +1,13 @@
-# LSoPLD - Label Smoothing of Pseudo-Labeled Data
+# Bachelor’s thesis
 > Thesis can be found here: [`bs_thesis_en.pdf`](https://github.com/detkov/LSoPLD/blob/master/bs_thesis_en.pdf)  
-> Диплом : [`bs_thesis_ru.pdf`](https://github.com/detkov/LSoPLD/blob/master/bs_thesis_ru.pdf)
+> Диплом расположен тут: [`bs_thesis_ru.pdf`](https://github.com/detkov/LSoPLD/blob/master/bs_thesis_ru.pdf)
 
-This repository contains the code used to accomplish N.S. Detkov's bachelor's thesis.
+This repository contains the code used to accomplish N.S. Detkov’s bachelor’s thesis.
 
 Topic: *Influence of the label smoothing of pseudo-labeled data on training Convolutional Neural Networks*
 
-
 Steps to reconstruct the solution:  
-1. Download the data from the [site](https://www.kaggle.com/c/siim-isic-melanoma-classification/data) and unpack in the `input/` folder
+1. Download the data from the [site](https://www.kaggle.com/c/siim-isic-melanoma-classification/data) and extract to the `input/` folder
 2. (Optional) Exploratory Data Analysis
     ```bash
     cd src
