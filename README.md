@@ -1,46 +1,47 @@
-# LSoPLD - Label Smoothing of Pseudo Labeled Data
-Данный репозиторий содержит код, использованный для написания бакалаврской выпускной квалификационной работы Деткова Н.С..
+# LSoPLD - Label Smoothing of Pseudo-Labeled Data
+> Thesis can be found here: [`bs_thesis_en.pdf`](https://github.com/detkov/LSoPLD/blob/master/bs_thesis_en.pdf)  
+> Диплом : [`bs_thesis_ru.pdf`](https://github.com/detkov/LSoPLD/blob/master/bs_thesis_ru.pdf)
 
-Тема: **Влияние label smoothing'а псевдо-размеченных данных на обучение свёрточных нейросетей**  
+This repository contains the code used to accomplish N.S. Detkov's bachelor's thesis.
+
+Topic: *Influence of the label smoothing of pseudo-labeled data on training Convolutional Neural Networks*
 
 
-Этапы для восстановления решения:  
-1. Скачивание данных с [сайта](https://www.kaggle.com/c/siim-isic-melanoma-classification/data) и распаковка в папку `input/`
-2. (Опционально) Первоначальное исследование данных
+Steps to reconstruct the solution:  
+1. Download the data from the [site](https://www.kaggle.com/c/siim-isic-melanoma-classification/data) and unpack in the `input/` folder
+2. (Optional) Exploratory Data Analysis
     ```bash
+    cd src
     juputer lab
     ```
-    Далее, необходимо открыть файл `src/EDA.ipynb` - в нём содержится обзор и визуализация представленных данных
-3. Предобработка данных, которая формирует изображения в уменьшенном разрешении и разбиение данных для обучения на фолды
+    Further, you need to open the `EDA.ipynb` file - it contains an overview and visualization of the presented data
+3. Data pre-processing, which generates reduced resolution images and splits the training data into folds
     ```bash
     cd src
     bash preprocess.sh
-    cd ..
     ```
-4. Запуск обучения
+4. Launch of the training process
     ```bash
-    python train.py -c exp_train_02.yaml
+    python train_infer.py -c exp_train_02.yaml
     ```
-5. Изучение статистики по предсказаниям test сета
+5. Review the statistics on the predictions of the test set
     ```bash
     python show_prediction_stats.py -f exp_train_02.csv
     ```
-6. Генерация псевдо размеченных наборов данных для fine-tuning'а
+6. Generation of pseudo-labeled datasets for the fine-tuning
     ```bash
     ipython Create_Datasets.ipynb
     ```
-7. Генерация псевдо размеченных наборов данных с label smoothing'ом, каждый из которых является одним "экспериментом"
+7. Generation of pseudo-labeled datasets applying label smoothing, each of which is "experiment"
     ```bash
     ipython Create_Experiments.ipynb
     ```
-8. Запуск экспериментов fine-tuning'а на псевдо размеченных наборах данных с label smoothing'ом
+8. Launch fine-tuning experiments on pseudo-label with label smoothing
     ```bash
     ipython Run_Experiments.ipynb
     ```
-9. Обзор результатов проведённых экспериментов
+9. Overview of the experiments results
     ```bash
     juputer lab
     ```
-    Далее, необходимо открыть файл `src/Analyse_Experiments_Results.ipynb` - в нём содержится обзор и визуализация представленных данных
-
-Сам диплом расположен в файле `thesis.pdf`.
+    Further, you need to open the `Analyse_Experiments_Results.ipynb` file — it contains an overview and visualization of the presented data
