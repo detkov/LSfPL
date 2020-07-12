@@ -13,7 +13,7 @@ Steps to reconstruct the solution:
     cd src
     juputer lab
     ```
-    Further, you need to open the `EDA.ipynb` file - it contains an overview and visualization of the presented data
+    Further, you need to open the `EDA.ipynb` file — it contains an overview and visualization of the presented data
 3. Data pre-processing, which generates reduced resolution images and splits the training data into folds
     ```bash
     cd src
